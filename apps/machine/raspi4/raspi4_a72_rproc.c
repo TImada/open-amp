@@ -140,7 +140,7 @@ raspi4_a72_proc_init(struct remoteproc *rproc,
     atomic_flag_test_and_set(&prproc->nokick);
 
     /* Register interrupt handler and enable interrupt */
-    irq_vect = prproc->armlocal_dev->irq_info;
+    irq_vect = (unsigned int)prproc->armlocal_dev->irq_info;
 #if defined(__linux__)
     ret = gic_register((uint32_t)irq_vect, MBOX_PRIORITY, (0x1U << 0x0U), prproc->gic_io);
     if (ret) {
